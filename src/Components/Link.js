@@ -14,13 +14,6 @@ class Link extends Component {
         <a href={this.url}>
           {this.props.children}
         </a>
-        {/* <header className="Link-header">
-          <img src={logo} className="Link-logo" alt="logo" />
-          <h1 className="Link-title">Welcome to React</h1>
-        </header>
-        <p className="Link-intro">
-          To get started, edit <code>src/Link.js</code> and save to reload.
-        </p> */}
       </div>
     );
   }

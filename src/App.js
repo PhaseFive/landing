@@ -1,21 +1,60 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { purple, green, red } from 'material-ui/colors'
+import Grid from 'material-ui/Grid';
+
+import Main from './components/Main';
+import NavBar from './components/NavBar';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: purple,
+    secondary: green,
+    error: red,
+  },
+});
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    marginTop: 56,
+    paddingTop: 16,
+    paddingBottom: 16,
+    paddingLeft: 24,
+    paddingRight: 24,
+    [theme.breakpoints.up('md')]: {
+      paddingTop: 32,
+      paddingBottom: 32,
+      paddingLeft: 48,
+      paddingRight: 48,
+    },
+  },
+})
 
 class App extends Component {
   render() {
+    const { classes } = this.props;
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <MuiThemeProvider theme={theme}>
+        <div>
+          <NavBar />
+          <Grid container className={classes.root}>
+            <Main />
+            <Main />
+            <Main />
+            <Main />
+          </Grid>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(App);

@@ -15,15 +15,12 @@ import FullStackImage from './fullstack.jpeg';
 class Splash extends Component {
   state = {
     value: 'web',
+    headline: 'Web',
+    subheading: 'Responsive, mobile-first web development',
+    image: WebImage,
   };
 
   handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { value } = this.state;
     let headline, subheading, image;
 
     if (value === 'web') {
@@ -41,6 +38,13 @@ class Splash extends Component {
       subheading = 'Full Stack Developers ready to fulfill your developing needs';
       image = FullStackImage;
     }
+
+    this.setState({ value, headline, subheading, image });
+  };
+
+  render() {
+    const { classes } = this.props;
+    const { value, headline, subheading, image } = this.state;
 
     return (
       <Paper className={classes.root}>

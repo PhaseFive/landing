@@ -22,7 +22,7 @@ const styles = theme => ({
   },
 });
 
-class Main extends Component {
+class Splash extends Component {
   render() {
     const { classes } = this.props;
 
@@ -41,8 +41,8 @@ class Main extends Component {
   }
 }
 
-Main.propTypes = {
+Splash.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Main);
+export default withStyles(styles)(Splash);

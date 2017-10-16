@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import { purple, green, red } from 'material-ui/colors'
+import { green, red, indigo } from 'material-ui/colors'
 import Grid from 'material-ui/Grid';
 
-import Main from './components/Main';
+import Splash from './components/Splash';
 import NavBar from './components/NavBar';
 
 const theme = createMuiTheme({
   palette: {
-    primary: purple,
+    primary: indigo,
     secondary: green,
     error: red,
   },
@@ -18,12 +18,13 @@ const theme = createMuiTheme({
 
 const styles = theme => ({
   root: {
+    maxWidth: '100%',
     flexGrow: 1,
-    marginTop: 56,
-    paddingTop: 16,
+    marginTop: 48,
+    paddingTop: 0,
     paddingBottom: 16,
-    paddingLeft: 24,
-    paddingRight: 24,
+    paddingLeft: 8,
+    paddingRight: 8,
     [theme.breakpoints.up('md')]: {
       paddingTop: 32,
       paddingBottom: 32,
@@ -39,13 +40,18 @@ class App extends Component {
 
     return (
       <MuiThemeProvider theme={theme}>
-        <div>
+        <div className={classes.root}>
           <NavBar />
-          <Grid container className={classes.root}>
-            <Main />
-            <Main />
-            <Main />
-            <Main />
+          <Grid container>
+            <Grid item xs={12}>
+              <Splash />
+            </Grid>
+            <Grid item xs={12}>
+              <Splash />
+            </Grid>
+            <Grid item xs={12}>
+              <Splash />
+            </Grid>
           </Grid>
         </div>
       </MuiThemeProvider>

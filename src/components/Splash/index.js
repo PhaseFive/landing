@@ -12,59 +12,67 @@ import WebImage from './web.jpeg';
 import MobileImage from './mobile.jpeg';
 import FullStackImage from './fullstack.jpeg';
 
-class Splash extends Component {
-  state = {
-    value: 'web',
+const tabs = [
+  {
     headline: 'Web',
     subheading: 'Responsive, mobile-first web development',
     image: WebImage,
-  };
+    icon: Web,
+  },
+  {
+    headline: 'Mobile',
+    subheading: 'Android and IOS app development with React Native',
+    image: MobileImage,
+    icon: Smartphone,
+  },
+  {
+    headline: 'Full Stack',
+    subheading: 'Full Stack Developers ready to fulfill your developing needs',
+    image: FullStackImage,
+    icon: Apps,
+  },
+];
+
+class Splash extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentTab: 0,
+    };
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(() => {
+      let newTab = this.state.currentTab + 1;
+      if (newTab >= tabs.length) {
+        newTab = 0;
+      }
+      this.handleChange(null, newTab)
+    }, 4000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
 
   handleChange = (event, value) => {
-    let headline, subheading, image;
-
-    if (value === 'web') {
-      headline = 'Web';
-      subheading = 'Responsive, mobile-first web development';
-      image = WebImage;
-    }
-    else if (value === 'mobile') {
-      headline = 'Mobile';
-      subheading = 'Android and IOS app development with React Native';
-      image = MobileImage;
-    }
-    else {
-      headline = 'Full Stack';
-      subheading = 'Full Stack Developers ready to fulfill your developing needs';
-      image = FullStackImage;
-    }
-
-    this.setState({ value, headline, subheading, image });
+    this.setState({ currentTab: value });
   };
 
   render() {
     const { classes } = this.props;
-    const { value, headline, subheading, image } = this.state;
+    const { currentTab } = this.state;
+    const tab = tabs[currentTab];
 
     return (
       <Paper className={classes.root}>
-        <div className={classes.splash}>
-          <img src={image} className={classes.splashImg} alt="Splash" />
-          <div className={classes.textOver}>
-            <Typography type="headline" component="h3" color="primary">
-              {headline}
-            </Typography>
-            <Typography type="subheading" component="h4" color="inherit">
-              {subheading}
-            </Typography>
-          </div>
-        </div>
+        <SplashDisplay classes={classes} tab={tab} />
         <div className={classes.splashFooter}>
-          <Tabs value={value} onChange={this.handleChange} fullWidth={true}>
-            <Tab value="web" icon={<Web />} />
-            <Tab value="mobile" icon={<Smartphone />} />
-            <Tab value="fullstack" icon={<Apps />} />
-          </Tabs>
+          <TabsDisplay
+            currentTab={currentTab}
+            tabs={tabs}
+            handleChange={this.handleChange}
+          />
           <Button className={classes.button} type="button" color="inherit">
             More...
           </Button>
@@ -76,6 +84,44 @@ class Splash extends Component {
 
 Splash.propTypes = {
   classes: PropTypes.object.isRequired,
+};
+
+const SplashDisplay = (props) => {
+  const { classes } = props;
+  const { image, headline, subheading } = props.tab;
+
+  return (
+    <div className={classes.splash}>
+      <img src={image} className={classes.splashImg} alt="Splash" />
+      <div className={classes.textOver}>
+        <Typography type="headline" component="h3" color="primary">
+          {headline}
+        </Typography>
+        <Typography type="subheading" component="h4" color="inherit">
+          {subheading}
+        </Typography>
+      </div>
+    </div>
+  );
+};
+
+const TabsDisplay = (props) => {
+  const { currentTab, handleChange } = props;
+  const tabs = props.tabs.map((tab, index) => {
+    return (
+      <Tab value={index} icon={<tab.icon />} />
+    );
+  });
+
+  return (
+    <Tabs
+      value={currentTab}
+      onChange={handleChange}
+      fullWidth={true}
+    >
+      {tabs}
+    </Tabs>
+  );
 };
 
 export default withStyles(styles)(Splash);

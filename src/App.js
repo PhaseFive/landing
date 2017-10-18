@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import { green, red, indigo } from 'material-ui/colors'
+import { withStyles, MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { green, red, indigo } from 'material-ui/colors';
 import Grid from 'material-ui/Grid';
 
 import Splash from './components/Splash';
@@ -32,7 +31,7 @@ const styles = theme => ({
       paddingRight: 48,
     },
   },
-})
+});
 
 class App extends Component {
   render() {

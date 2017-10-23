@@ -1,4 +1,12 @@
 const styles = theme => ({
+  headline: {
+    fontFamily: 'Lobster',
+    fontSize: 30 + 'pt'
+  },
+  subheading: {
+    fontFamily: 'Raleway',
+    fontSize: 15 + 'pt'
+  },
   root: {
     maxHeight: '100%',
     padding: 5,

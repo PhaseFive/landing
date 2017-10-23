@@ -45,12 +45,6 @@ class App extends Component {
             <Grid item xs={12}>
               <Splash />
             </Grid>
-            <Grid item xs={12}>
-              <Splash />
-            </Grid>
-            <Grid item xs={12}>
-              <Splash />
-            </Grid>
           </Grid>
         </div>
       </MuiThemeProvider>

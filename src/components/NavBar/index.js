@@ -34,7 +34,7 @@ class Navbar extends Component {
 
     const navButtons = navLinks.map((navLink, index) => {
       return (
-        <Button type="button" color="inherit">
+        <Button key={index} type="button" color="inherit">
           <a className={classes.navLink} href={navLink.href}>
             {navLink.title}
           </a>

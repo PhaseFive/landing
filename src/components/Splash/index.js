@@ -94,10 +94,10 @@ const SplashDisplay = (props) => {
     <div className={classes.splash}>
       <img src={image} className={classes.splashImg} alt="Splash" />
       <div className={classes.textOver}>
-        <Typography type="headline" component="h3" color="primary">
+        <Typography className={classes.headline} type="headline" component="h3" color="primary">
           {headline}
         </Typography>
-        <Typography type="subheading" component="h4" color="inherit">
+        <Typography className={classes.subheading} type="subheading" component="h4" color="inherit">
           {subheading}
         </Typography>
       </div>
@@ -109,7 +109,7 @@ const TabsDisplay = (props) => {
   const { currentTab, handleChange } = props;
   const tabs = props.tabs.map((tab, index) => {
     return (
-      <Tab value={index} icon={<tab.icon />} />
+      <Tab key={index} value={index} icon={<tab.icon />} />
     );
   });
 

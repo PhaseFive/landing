@@ -6,8 +6,14 @@ import Grid from 'material-ui/Grid';
 
 import Splash from './components/Splash';
 import NavBar from './components/NavBar';
+import Contact from './components/Contact';
 
 const theme = createMuiTheme({
+  overrides: {
+    MuiPaper: {
+      padding: 100
+    }
+  },
   palette: {
     primary: indigo,
     secondary: green,
@@ -44,6 +50,9 @@ class App extends Component {
           <Grid container>
             <Grid item xs={12}>
               <Splash />
+            </Grid>
+            <Grid item xs={12}>
+              <Contact />
             </Grid>
           </Grid>
         </div>

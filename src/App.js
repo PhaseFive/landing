@@ -6,6 +6,7 @@ import Grid from 'material-ui/Grid';
 
 import Splash from './components/Splash';
 import NavBar from './components/NavBar';
+import Services from './components/Services';
 
 const theme = createMuiTheme({
   palette: {
@@ -44,6 +45,9 @@ class App extends Component {
           <Grid container>
             <Grid item xs={12}>
               <Splash />
+            </Grid>
+            <Grid item xs={12}>
+              <Services />
             </Grid>
           </Grid>
         </div>
